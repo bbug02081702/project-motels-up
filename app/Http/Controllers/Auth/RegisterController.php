@@ -52,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'favoriteColor'=>'required',
+            'phone'=>'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -79,9 +79,9 @@ class RegisterController extends Controller
     function register(Request $request){
 
          $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'favoriteColor'=>'required',
+            'phone'=>'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
          ]);
 
@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
          $path = 'users/images/';
          $fontPath = public_path('fonts/Oliciy.ttf');
-         $char = strtoupper($request->name[0]);
+         $char = strtoupper($request->username[0]);
          $newAvatarName = rand(12,34353).time().'_avatar.png';
          $dest = $path.$newAvatarName;
 
@@ -97,18 +97,18 @@ class RegisterController extends Controller
          $picture = $createAvatar == true ? $newAvatarName : '';
 
          $user = new User();
-         $user->name = $request->name;
+         $user->username = $request->username;
          $user->email = $request->email;
          $user->role = 2;
-         $user->favoriteColor = $request->favoriteColor;
+         $user->phone = $request->phone;
          $user->picture = $picture;
          $user->password = \Hash::make($request->password);
 
          if( $user->save() ){
 
-            return redirect()->back()->with('success','You are now successfully registerd');
+            return redirect()->back()->with('success','Bạn đã đăng ký thành công');
          }else{
-             return redirect()->back()->with('error','Failed to register');
+             return redirect()->back()->with('error','Đăng kí thất bại');
          }
 
     }

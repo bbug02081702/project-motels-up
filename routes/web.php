@@ -32,8 +32,35 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHistory']], function(){
         Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
         Route::get('profile',[AdminController::class,'profile'])->name('admin.profile');
-        Route::get('settings',[AdminController::class,'settings'])->name('admin.settings');
 
+        Route::get('list-motels',[AdminController::class,'listMotels'])->name('admin.listmotels');
+
+        Route::get('add-motels',[AdminController::class,'addMotels'])->name('admin.addmotels');
+        Route::post('add-motels',[AdminController::class,'storeMotels'])->name('admin.storemotels');
+
+        Route::get('edit-motels/{id}',[AdminController::class,'editMotels'])->name('admin.editmotels');
+        Route::post('add-motels/{id}',[AdminController::class,'updateMotels'])->name('admin.updatemotels');
+
+        Route::get('delete-motels/{id}',[AdminController::class,'destroyMotels'])->name('admin.deletemotels');
+
+        // xu ly thay doi trang thai phong tro
+        Route::get('changestatusmotels/{id}', [AdminController::class,'changeStatusMotels'])->name('admin.changestatusmotels');
+
+        Route::get('list-users',[AdminController::class,'listUsers'])->name('admin.listusers');
+
+        // xu ly hien thi danh sach ban ghi tu bang users
+        Route::get('add-manager-user', [AdminController::class,'createUserManager'])->name('admin.addmanageruser'); //hien thi form them user
+        Route::post('store-manager-user',[AdminController::class,'storeUserManager'])->name('admin.storemanageruser'); //xu ly them user tu form
+
+        Route::get('edit-manager-user/{id}', [AdminController::class,'editUserManager'])->name('admin.editmanageruser'); //hien thi form sua user
+        Route::post('update-manager-user/{id}', [AdminController::class,'updateUserManager'])->name('admin.updatemanageruser'); // xu ly sua user tu form
+
+        Route::get('delete-manager-user/{id}', [AdminController::class,'destroyUserManager'])->name('admin.deletenageruser'); // xu ly xoa user
+        
+        // xu ly thay doi trang thai quyen user
+        Route::get('changestatususer/{id}', [AdminController::class,'changeStatusUser'])->name('admin.changestatususer');
+
+    
 
         Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
         Route::post('change-profile-picture',[AdminController::class,'updatePicture'])->name('adminPictureUpdate');
@@ -42,7 +69,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
-    Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
+    
+    Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard'); // trang chu user khi login ok
+
+    Route::get('motels/list/{id}', [UserController::class,'showview'])->name('motels/list/view'); //luot xem chi tiet bai viet
+
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');
     Route::get('settings',[UserController::class,'settings'])->name('user.settings');
     

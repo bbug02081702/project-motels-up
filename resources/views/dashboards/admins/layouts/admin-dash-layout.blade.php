@@ -62,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ Auth::user()->picture }}" class="img-circle elevation-2 admin_picture" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block admin_name">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block admin_name">{{ Auth::user()->username }}</a>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="{{ route('admin.dashboard')}}" class="nav-link {{ (request()->is('admin/dashboard*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-home"></i>
                   <p>
-                    Dashboard
+                    Tong quan
                   </p>
                 </a>
               </li>
@@ -85,18 +85,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="{{ route('admin.profile')}}" class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-user"></i>
                   <p>
-                   Profile
+                   Thong tin
                   </p>
                 </a>
               </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.settings')}}" class="nav-link {{ (request()->is('admin/settings*')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-               Settings
-              </p>
-            </a>
-          </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.listmotels')}}" class="nav-link {{ (request()->is('admin/listmotels*')) ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>
+                  Phong tro
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.listusers')}}" class="nav-link {{ (request()->is('admin/listusers*')) ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                   Nguoi dung
+                  </p>
+                </a>
+              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

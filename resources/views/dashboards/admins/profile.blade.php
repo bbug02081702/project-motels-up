@@ -39,7 +39,7 @@
                   <p class="text-muted text-center">Admin</p>
 
                   <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
-                  <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Change picture</b></a>
+                  <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Đổi ảnh</b></a>
                   
                 </div>
                 <!-- /.card-body -->
@@ -53,8 +53,8 @@
               <div class="card">
                 <div class="card-header p-2">
                   <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#personal_info" data-toggle="tab">Personal Information</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Change Password</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#personal_info" data-toggle="tab">Thông tin cá nhân</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Đổi mật khẩu</a></li>
                   </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
@@ -62,11 +62,11 @@
                     <div class="active tab-pane" id="personal_info">
                       <form class="form-horizontal" method="POST" action="{{ route('adminUpdateInfo') }}" id="AdminInfoForm">
                         <div class="form-group row">
-                          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                          <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName" placeholder="Name" value="{{ Auth::user()->name }}" name="name">
+                            <input type="text" class="form-control" id="inputName" placeholder="Nhap username" value="{{ Auth::user()->username }}" name="username">
 
-                            <span class="text-danger error-text name_error"></span>
+                            <span class="text-danger error-text username_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -77,15 +77,15 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputName2" class="col-sm-2 col-form-label">Favorite Color</label>
+                          <label for="inputName2" class="col-sm-2 col-form-label">Phone</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Favorite color" value="{{ Auth::user()->favoriteColor }}" name="favoritecolor">
-                            <span class="text-danger error-text favoritecolor_error"></span>
+                            <input type="text" class="form-control" id="inputName2" placeholder="Nhap so dien thoai" value="{{ Auth::user()->phone }}" name="phone">
+                            <span class="text-danger error-text phone_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">Save Changes</button>
+                            <button type="submit" class="btn btn-danger">Lưu thay đổi</button>
                           </div>
                         </div>
                       </form>
@@ -94,29 +94,29 @@
                     <div class="tab-pane" id="change_password">
                         <form class="form-horizontal" action="{{ route('adminChangePassword') }}" method="POST" id="changePasswordAdminForm">
                           <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Old Passord</label>
+                            <label for="inputName" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
                             <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputName" placeholder="Enter current password" name="oldpassword">
+                              <input type="password" class="form-control" id="inputName" placeholder="Nhập mật khẩu hiện tại" name="oldpassword">
                               <span class="text-danger error-text oldpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
                             <div class="col-sm-10">
-                              <input type="password" class="form-control" id="newpassword" placeholder="Enter new password" name="newpassword">
+                              <input type="password" class="form-control" id="newpassword" placeholder="Nhập mật khẩu mới" name="newpassword">
                               <span class="text-danger error-text newpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">Confirm New Password</label>
                             <div class="col-sm-10">
-                              <input type="password" class="form-control" id="cnewpassword" placeholder="ReEnter new password" name="cnewpassword">
+                              <input type="password" class="form-control" id="cnewpassword" placeholder="Nhập lại mật khẩu mới" name="cnewpassword">
                               <span class="text-danger error-text cnewpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
-                              <button type="submit" class="btn btn-danger">Update Password</button>
+                              <button type="submit" class="btn btn-danger">Cập nhật mật khẩu</button>
                             </div>
                           </div>
                         </form>

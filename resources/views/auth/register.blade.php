@@ -16,7 +16,7 @@
 				
 					<div class="cardx fat mt-4">
 						<div class="card-body">
-							<h4 class="card-title">Register</h4>
+							<h4 class="card-title">Dang ky</h4>
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('register') }}">
 
 								@if ( Session::get('success'))
@@ -31,20 +31,20 @@
 								@endif
                                 @csrf
 								<div class="form-group">
-									<label for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name"  autofocus placeholder="Enter name" value="{{ old('name') }}">
-									<span class="text-danger">@error('name'){{ $message }}@enderror</span>
+									<label for="name">Ten nguoi dung</label>
+									<input id="username" type="text" class="form-control" name="username"  autofocus placeholder="Nhap username" value="{{ old('username') }}">
+									<span class="text-danger">@error('username'){{ $message }}@enderror</span>
 								</div>
 
 								<div class="form-group">
-									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email"  placeholder="Enter email" value="{{ old('email') }}">
+									<label for="email">Email</label>
+									<input id="email" type="email" class="form-control" name="email"  placeholder="Nhap email" value="{{ old('email') }}">
 									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>
                                 <div class="form-group">
-									<label for="favoriteColor">Favorite Color</label>
-									<input id="favoriteColor" type="text" class="form-control" name="favoriteColor"  placeholder="Enter favorite color">
-									<span class="text-danger">@error('favoriteColor'){{ $message }}@enderror</span>
+									<label for="phone">So dien thoai</label>
+									<input id="phone" type="text" class="form-control" name="phone"  placeholder="Nhap so dien thoai">
+									<span class="text-danger">@error('phone'){{ $message }}@enderror</span>
 								</div>
 
 								<div class="form-group">

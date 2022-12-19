@@ -21,7 +21,7 @@
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
                                 @csrf
 								<div class="form-group">
-									<label for="email">E-Mail Address</label>
+									<label for="email">Email</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Enter email">
                                     <span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>

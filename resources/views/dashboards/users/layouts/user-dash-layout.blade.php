@@ -60,7 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->username }}</a>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                <a href="{{ route('admin.dashboard')}}" class="nav-link {{ (request()->is('user/dashboard*')) ? 'active' : '' }}">
+                <a href="{{ route('user.dashboard')}}" class="nav-link {{ (request()->is('user/dashboard*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-home"></i>
                   <p>
                     Dashboard
@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
           <li class="nav-item">
-            <a href="{{ route('admin.settings')}}" class="nav-link {{ (request()->is('user/settings*')) ? 'active' : '' }}">
+            <a href="{{ route('user.settings')}}" class="nav-link {{ (request()->is('user/settings*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                Settings
