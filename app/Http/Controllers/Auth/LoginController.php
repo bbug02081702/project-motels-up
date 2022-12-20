@@ -31,10 +31,10 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
       protected function redirectTo(){
           if( Auth()->user()->role == 1){
-              return route('admin.dashboard','user.dashboard');
+              return route('admin.dashboard','user.home');
           }
           elseif( Auth()->user() == 2){
-              return route('user.dashboard');
+              return route('user.home','user.dashboard');
           }
       }
 
@@ -62,7 +62,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard','user.dashboard');
         }
         elseif( auth()->user()->role == 2 ){
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.home');
         }
 
        }else{
