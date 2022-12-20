@@ -8,12 +8,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title')</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <base href="{{ \URL::to('/') }}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Nhung link plugins css crop anh -->
+  <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.css') }}">
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -136,7 +140,109 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Nhung link plugins js crop anh -->
+<script src="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
+
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
+
+
+{{-- CUSTOM JS CODES --}}
+<script>
+
+  $.ajaxSetup({
+     headers:{
+       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+     }
+  });
+  
+  $(function(){
+
+    /* CAP NHAT USER THONG TIN */
+
+    $('#UserInfoForm').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+           url:$(this).attr('action'),
+           method:$(this).attr('method'),
+           data:new FormData(this),
+           processData:false,
+           dataType:'json',
+           contentType:false,
+           beforeSend:function(){
+               $(document).find('span.error-text').text('');
+           },
+           success:function(data){
+                if(data.status == 0){
+                  $.each(data.error, function(prefix, val){
+                    $('span.'+prefix+'_error').text(val[0]);
+                  });
+                }else{
+                  $('.user_name').each(function(){
+                     $(this).html( $('#UserInfoForm').find( $('input[name="name"]') ).val() );
+                  });
+                  alert(data.msg);
+                }
+           }
+        });
+    });
+
+
+
+    $(document).on('click','#change_picture_btn', function(){
+      $('#user_image').click();
+    });
+
+
+    $('#user_image').ijaboCropTool({
+          preview : '.user_picture',
+          setRatio:1,
+          allowedExtensions: ['jpg', 'jpeg','png'],
+          buttonsText:['Cắt ảnh','Thoát'],
+          buttonsColor:['#30bf7d','#ee5155', -15],
+          processUrl:'{{ route("userChangePicture") }}',
+          // withCSRF:['_token','{{ csrf_token() }}'],
+          onSuccess:function(message, element, status){
+             alert(message);
+          },
+          onError:function(message, element, status){
+            alert(message);
+          }
+       });
+
+
+    $('#changePasswordUserForm').on('submit', function(e){
+         e.preventDefault();
+
+         $.ajax({
+            url:$(this).attr('action'),
+            method:$(this).attr('method'),
+            data:new FormData(this),
+            processData:false,
+            dataType:'json',
+            contentType:false,
+            beforeSend:function(){
+              $(document).find('span.error-text').text('');
+            },
+            success:function(data){
+              if(data.status == 0){
+                $.each(data.error, function(prefix, val){
+                  $('span.'+prefix+'_error').text(val[0]);
+                });
+              }else{
+                $('#changePasswordUserForm')[0].reset();
+                alert(data.msg);
+              }
+            }
+         });
+    });
+
+    
+  });
+
+</script>
+
 </body>
 </html>

@@ -81,6 +81,10 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHisto
 
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');
 
+    Route::post('update-profile-info', [UserController::class, 'updateInfo'])->name('userUpdateInfo');  //xu ly thay doi thong tin cua user
+    Route::post('change-picture-info', [UserController::class, 'updatePicture'])->name('userChangePicture'); //xu ly thay doi anh cho user
+    Route::post('update-password-info', [UserController::class, 'changePassword'])->name('userUpdatePassword'); //xu ly thay doi mat khau cho user
+
     Route::get('motels/list/{id}', [UserController::class,'showview'])->name('motels/list/view'); //luot xem chi tiet bai viet
 
     

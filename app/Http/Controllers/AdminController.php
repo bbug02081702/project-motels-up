@@ -177,7 +177,7 @@ class AdminController extends Controller
         return view('admin.home.dasboard',compact('countUsers', 'countPost', 'countMotelsOk', 'countMotelsNotOk'));
     }
 
-    function updateInfo(Request $request){
+    public function updateInfo(Request $request){
            
             $validator = \Validator::make($request->all(),[
                    'username'=>'required',
@@ -199,10 +199,10 @@ class AdminController extends Controller
                     }else{
                         return response()->json(['status'=>1,'msg'=>'Thông tin hồ sơ của bạn đã được cập nhật thành công.']);
                     }
-               }
-       }
+                }
+    }
 
-       function updatePicture(Request $request){
+    public function updatePicture(Request $request){
            $path = 'users/images/';
            $file = $request->file('admin_image');
            $new_name = 'UIMG_'.date('Ymd').uniqid().'.jpg';
@@ -231,10 +231,10 @@ class AdminController extends Controller
                    return response()->json(['status'=>1,'msg'=>'Ảnh hồ sơ của bạn đã được cập nhật thành công.']);
                }
            }
-       }
+        }
 
 
-       function changePassword(Request $request){
+    public function changePassword(Request $request){
            //Validate form
            $validator = \Validator::make($request->all(),[
                'oldpassword'=>[
@@ -270,7 +270,7 @@ class AdminController extends Controller
             }else{
                 return response()->json(['status'=>1,'msg'=>'Mật khẩu của bạn đã được thay đổi thành công']);
             }
-           }
-       }
+        }
+    }
 
 }

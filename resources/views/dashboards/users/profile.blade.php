@@ -30,14 +30,14 @@
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle admin_picture" src="{{ Auth::user()->picture }}" alt="User profile picture">
+                    <img class="profile-user-img img-fluid img-circle user_picture" src="{{ Auth::user()->picture }}" alt="User profile picture">
                   </div>
   
-                  <h3 class="profile-username text-center admin_name">{{Auth::user()->name}}</h3>
+                  <h3 class="profile-username text-center user_name">{{Auth::user()->name}}</h3>
   
                   <p class="text-muted text-center">User</p>
 
-                  <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
+                  <input type="file" name="user_image" id="user_image" style="opacity: 0;height:1px;display:none">
                   <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Đổi ảnh</b></a>
                   
                 </div>
@@ -59,7 +59,7 @@
                 <div class="card-body">
                   <div class="tab-content">
                     <div class="active tab-pane" id="personal_info">
-                      <form class="form-horizontal" method="POST" action="{{ route('adminUpdateInfo') }}" id="AdminInfoForm">
+                      <form class="form-horizontal" method="POST" action="{{ route('userUpdateInfo') }}" id="UserInfoForm">
                         <div class="form-group row">
                           <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                           <div class="col-sm-10">
@@ -91,7 +91,7 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="change_password">
-                        <form class="form-horizontal" action="{{ route('adminChangePassword') }}" method="POST" id="changePasswordAdminForm">
+                        <form class="form-horizontal" action="{{route('userUpdatePassword')}}" method="POST" id="changePasswordUserForm">
                           <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
                             <div class="col-sm-10">
@@ -100,14 +100,14 @@
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Mật khẩu mới</label>
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="newpassword" placeholder="Nhập mật khẩu mới" name="newpassword">
                               <span class="text-danger error-text newpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Confirm New Password</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Xac nhận mật khẩu mới</label>
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="cnewpassword" placeholder="Nhập lại mật khẩu mới" name="cnewpassword">
                               <span class="text-danger error-text cnewpassword_error"></span>

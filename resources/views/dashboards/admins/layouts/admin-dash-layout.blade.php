@@ -15,7 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-   <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.css') }}">
+
+  <!-- Nhung link plugins css crop anh -->
+  <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -146,7 +148,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Nhung link plugins js crop anh -->
 <script src="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
+
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 
@@ -161,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   $(function(){
 
-    /* UPDATE ADMIN PERSONAL INFO */
+    /* CAP NHAT USER-ADMIN THONG TIN */
 
     $('#AdminInfoForm').on('submit', function(e){
         e.preventDefault();
@@ -202,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           preview : '.admin_picture',
           setRatio:1,
           allowedExtensions: ['jpg', 'jpeg','png'],
-          buttonsText:['CROP','QUIT'],
+          buttonsText:['Cắt ảnh','Thoát'],
           buttonsColor:['#30bf7d','#ee5155', -15],
           processUrl:'{{ route("adminPictureUpdate") }}',
           // withCSRF:['_token','{{ csrf_token() }}'],

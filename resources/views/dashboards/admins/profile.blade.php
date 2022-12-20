@@ -101,14 +101,14 @@
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Mật khẩu mới"</label>
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="newpassword" placeholder="Nhập mật khẩu mới" name="newpassword">
                               <span class="text-danger error-text newpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Confirm New Password</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Xac nhận mật khẩu mới</label>
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="cnewpassword" placeholder="Nhập lại mật khẩu mới" name="cnewpassword">
                               <span class="text-danger error-text cnewpassword_error"></span>
