@@ -44,7 +44,7 @@
               @foreach($motels as $index => $row)
                 <tr>
                   <th scope="row">{{$index + $motels->firstItem()}}</th>
-                  <td><a href="">{{$row->title}}</a></td>
+                  <td><a href="{{{route('user.dashboard')}}}">{{$row->title}}</a></td>
                   <td>
                     <img src="{{asset('fotopegawai/'.$row->images)}}" style="width:48px;" alt="">
                   </td>

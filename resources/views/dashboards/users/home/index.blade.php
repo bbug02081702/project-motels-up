@@ -137,19 +137,19 @@
                   <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Quản lý tài khoản <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li>Mã tài khoản: <strong></strong>
+                    <li>Mã tài khoản: {{Auth::user()->id}} <strong></strong>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                      <a rel="nofollow" href="/dang-tin.html" title="Đăng tin">
+                      <a rel="nofollow" href="#" title="Đăng tin">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> Đăng tin </a>
                     </li>
                     <li>
-                      <a rel="nofollow" href="/quan-ly-tin.html" title="Quản lý tin">
+                      <a rel="nofollow" href="#" title="Quản lý tin">
                         <i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý tin đăng </a>
                     </li>
                     <li>
-                      <a rel="nofollow" href="/tai-khoan.html">
+                      <a rel="nofollow" href="{{route('user.profile')}}">
                         <i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản </a>
                     </li>
                     <li role="separator" class="divider"></li>
@@ -444,9 +444,6 @@
           </div>
         </div>
         @yield('infocontent')
-        @yield('infoaccount')
-        @yield('postuser')
-        @yield('managerpost')
       </div>
     </div>
     <footer class="page-footer">

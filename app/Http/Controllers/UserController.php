@@ -8,8 +8,27 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    function index(){
+    public function index(){
     
+        return view('dashboards.users.index');
+    }
+
+
+
+            // xu ly luot xem chi tiet bai viet
+            public function showview($id){
+                $post = Motels::find($id);
+                $update = ['count_view' =>$post->count_view + 1,];
+                Motels::where('id',$post->id)->update($update);
+
+                $motels = DB::table('motels')->where('id',$id)->get();
+                // dd($motels);
+                return view('dashboards.users.home.motel.content',compact('motels'));
+            }
+
+
+
+    public function userHome(){
         // hien thi trang chu mac dinh cho user
          
         $motels = DB::table('motels')->orderBy('created_at', 'DESC')->paginate(2);//sap xep danh sach bai viet theo thu tu bai dang moi nhat
@@ -30,32 +49,16 @@ class UserController extends Controller
             $motels = DB::table('motels')->orderBy('created_at', 'DESC')->where('address', 'LIKE', '%'.$address.'%')->paginate(2);
         }
 
-        return view('dashboards.users.home.index',compact('motels', 'motels_countview'));
+        return view('dashboards.users.home.index',compact('motels','motels_countview'));
     }
 
-
-
-            // xu ly luot xem chi tiet bai viet
-            public function showview($id){
-                $post = Motels::find($id);
-                $update = ['count_view' =>$post->count_view + 1,];
-                Motels::where('id',$post->id)->update($update);
-
-                $motels = DB::table('motels')->where('id',$id)->get();
-                // dd($motels);
-                return view('dashboards.users.home.motel.content',compact('motels'));
+            public function profile(){
+                return view('dashboards.users.profile');
             }
-
-
-
-   
-
-                function profile(){
-                    return view('dashboards.users.profile');
-                }
-                function settings(){
-                    return view('dashboards.users.settings');
-                }
+            // giao dien quan ly bai dang cua user
+            public function userPost(){
+                    return view('dashboards.users.manageruserpost');
+            }
 
 
                

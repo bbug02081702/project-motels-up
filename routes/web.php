@@ -70,11 +70,18 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
     
-    Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard'); // trang chu user khi login ok
+
+    Route::get('home',[UserController::class,'userHome'])->name('user.home');// trang chu xem cua user thong tin chi tiet giao dien nguoi dung khi login ok
+
+    Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard'); // trang chu quan ly cua user
+
+    
+    Route::get('users-post',[UserController::class,'userPost'])->name('user.post');
+
+
+    Route::get('profile',[UserController::class,'profile'])->name('user.profile');
 
     Route::get('motels/list/{id}', [UserController::class,'showview'])->name('motels/list/view'); //luot xem chi tiet bai viet
 
-    Route::get('profile',[UserController::class,'profile'])->name('user.profile');
-    Route::get('settings',[UserController::class,'settings'])->name('user.settings');
     
 });

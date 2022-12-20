@@ -1,8 +1,8 @@
 @extends('dashboards.users.layouts.user-dash-layout')
-@section('title','Settings')
+@section('title','userpost')
 
 @section('content')
 
-here------
+Quan ly tin dang
 
 @endsection
