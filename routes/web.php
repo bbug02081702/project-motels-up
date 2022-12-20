@@ -78,6 +78,20 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHisto
     
     Route::get('users-post',[UserController::class,'userPost'])->name('user.post');
 
+    Route::get('users-post-add',[UserController::class,'userPostAdd'])->name('user.postadd');
+    Route::post('users-post-store',[UserController::class,'userPostStore'])->name('user.poststore');
+
+    Route::get('users-post-edit/{id}',[UserController::class,'userPostEdit'])->name('user.postedit');
+    Route::post('users-post-update/{id}',[UserController::class,'userPostUpdate'])->name('user.postupdate');
+
+    Route::get('users-post-delete/{id}',[UserController::class,'userPostDestroy'])->name('user.postdelete');
+    
+    // xu ly thay doi trang thai phong tro
+    Route::get('changestatusmotels/{id}', [AdminController::class,'changeStatusMotels'])->name('user.changestatusmotels');
+
+    
+    
+
 
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');
 

@@ -92,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
           <li class="nav-item">
-            <a href="{{ route('user.post')}}" class="nav-link {{ (request()->is('user/settings*')) ? 'active' : '' }}">
+            <a href="{{ route('user.post')}}" class="nav-link {{ (request()->is('user/post*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                Quản lý tin đăng

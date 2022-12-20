@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Motels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,10 +56,66 @@ class UserController extends Controller
             public function profile(){
                 return view('dashboards.users.profile');
             }
+            
             // giao dien quan ly bai dang cua user
             public function userPost(){
-                    return view('dashboards.users.manageruserpost');
+                $users = DB::table('users')->where('role' ,2)
+                ->join('motels', 'users.id', '=', 'motels.id')
+                ->select('users.*', 'motels.*')
+                ->paginate(2);
+                $motels = DB::table('motels')
+                ->join('users', 'users.id', '=', 'motels.id')
+                ->select('users.*', 'motels.*')
+                ->paginate(2);
+                // dd($motels);
+                return view('dashboards.users.managerpost.index',compact('users','motels'));
             }
+
+            //them cho user
+            public function userPostAdd(){
+                return view('dashboards.users.managerpost.add');
+            }
+
+            public function userPostStore(Request $request){
+                $this->validate($request,[
+                    'title' => 'required',
+                    'images' => 'required',
+                    'price' => 'required',
+                ]);
+                
+                $motels = Motels::create($request->all());
+                if($request->hasFile('images')){
+                    $request->file('images')->move('fotopegawai/', $request->file('images')->getClientOriginalName());
+                    $motels->images = $request->file('images')->getClientOriginalName();
+                    $motels->save();
+                }
+                // dd($motels);
+                return redirect()->route('user.post')->with('Thongbao', 'Them danh sach phong tro thanh cong');
+            }
+                
+            // hien thi giao dien sua danh sach phong tro 
+            public function userPostEdit($id){
+                $motels = Motels::find($id);
+                // dd($motels);
+                return view('dashboards.admins.managermotels.edit',compact('motels'));
+            }
+            
+            // xu ly sua danh sach phong tro tu form
+            public function userPostUpdate(Request $request, $id){
+                $motels = Motels::find($id);
+                $motels->update($request->all());
+                return redirect()->route('user.post')->with('Thongbao', 'Sua danh sach phong tro thanh cong');
+        
+            }
+        
+            // xu ly xoa danh sach phong tro theo id
+            public function userPostDestroy($id){
+                $motels = Motels::find($id);
+                $motels->delete();
+                return redirect()->route('user.post')->with('Thongbao', 'Xoa danh sach phong tro thanh cong');
+            }
+
+
 
 
     // xu lu thay doi thong tin cua nguoi dung
